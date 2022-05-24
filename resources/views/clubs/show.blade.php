@@ -156,23 +156,27 @@
                     @forelse($club->announcements as $announcement)
                     <div class="list-group">
 
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <div class="bg-success p-2 text-dark bg-opacity-10">
+                    <a href="#" class="list-group-item list-group-item-action mt-3">
+                        <div class="bg-success p-2 text-dark bg-opacity-10 rounded">
                         <div class="d-flex w-100 justify-content-between">
-                        <h6 class="mb-1"></h6>
+                        <h6 class="mb-1">A new announcement</h6>
                         <small class="text-muted badge bg-primary text-white rounded-pill">{{ $announcement->created_at->diffForHumans() }}</small>
                         </div>
                         <p class="mb-1">{{ $announcement->content }}</p>
                         </div>
+                         <hr>
+                         <hr>
                         <!-- all comments -->
                         @forelse($announcement->comments as $comment)
                         <div class="bg-light p-2 text-dark bg-opacity-10">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-1">{{ $comment->user->name }}</h6>
-                                <small class="text-muted badge bg-primary text-white rounded-pill">{{ $comment->created_at->diffForHumans() }}</small>
-                            </div>
+                      
                             <p class="mb-1">{{ $comment->content }}</p>
+                            <div class="d-flex w-100">
+                            <small class="text-muted mb-1 badge badge-secondary round-pill">{{ $comment->user->name }}</small>
+                            <small class="text-muted ">{{ $comment->created_at->diffForHumans() }}</small>
+                            </div>
                         </div>
+                        <hr>
                         @empty
                         <div class="bg-light p-2 text-dark bg-opacity-10">
                             <div class="d-flex w-100 justify-content-between">
