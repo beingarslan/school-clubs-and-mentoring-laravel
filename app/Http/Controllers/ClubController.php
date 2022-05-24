@@ -56,7 +56,7 @@ class ClubController extends Controller
      */
     public function show(Club $club)
     {
-        //
+        return view('clubs.show', compact('club'));
     }
 
     /**
@@ -90,6 +90,8 @@ class ClubController extends Controller
      */
     public function destroy(Club $club)
     {
-        //
+        $club->delete();
+        Toastr::success('Club deleted successfully.');
+        return redirect()->back();
     }
 }

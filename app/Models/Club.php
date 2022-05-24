@@ -16,6 +16,6 @@ class Club extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, UserClub::class, 'club_id', 'user_id');
     }
 }

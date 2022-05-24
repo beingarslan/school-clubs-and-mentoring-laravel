@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserClubRequest;
 use App\Http\Requests\UpdateUserClubRequest;
 use App\Models\UserClub;
+use Brian2694\Toastr\Facades\Toastr;
 
 class UserClubController extends Controller
 {
@@ -15,7 +16,9 @@ class UserClubController extends Controller
      */
     public function index()
     {
-        //
+        $userClubs = UserClub::with('users')->get();
+
+        return view('userClubs.index', compact('userClubs'));
     }
 
     /**
@@ -36,7 +39,13 @@ class UserClubController extends Controller
      */
     public function store(StoreUserClubRequest $request)
     {
-        //
+        $club = UserClub::create([
+            'user_id' => $request->user_id,
+            'club_id' => $request->club_id,
+        ]); 
+
+        Toastr::success('User added to club successfully.');
+        return redirect()->back();
     }
 
     /**
@@ -81,6 +90,7 @@ class UserClubController extends Controller
      */
     public function destroy(UserClub $userClub)
     {
-        //
+        $userClub->delete();
+        Toastr::success('User removed from club successfully.');
     }
 }
