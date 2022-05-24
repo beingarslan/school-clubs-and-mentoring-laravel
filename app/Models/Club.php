@@ -18,4 +18,9 @@ class Club extends Model
     {
         return $this->belongsToMany(User::class, UserClub::class, 'club_id', 'user_id');
     }
+
+    public function announcements()
+    {
+        return $this->hasMany(ClubAnnouncement::class);
+    }
 }
