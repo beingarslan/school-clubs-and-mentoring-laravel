@@ -2,8 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Club;
+use App\Models\ClubAnnouncement;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+//faker
+use Faker\Factory as Faker;
 
 class ClubAnnouncementSeeder extends Seeder
 {
@@ -14,6 +18,15 @@ class ClubAnnouncementSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $faker = Faker::create();
+            for ($i = 0; $i < 10; $i++) {
+                ClubAnnouncement::factory()->create([
+                    'content' => $faker->text,
+                    'club_id'=>$faker->numberBetween(1,10),
+                ]);
+            
+        }
+        
+        
     }
 }

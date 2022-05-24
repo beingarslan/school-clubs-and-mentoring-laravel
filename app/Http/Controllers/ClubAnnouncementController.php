@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreClubAnnouncementRequest;
 use App\Http\Requests\UpdateClubAnnouncementRequest;
 use App\Models\ClubAnnouncement;
+use Brian2694\Toastr\Facades\Toastr;
 
 class ClubAnnouncementController extends Controller
 {
@@ -36,7 +37,12 @@ class ClubAnnouncementController extends Controller
      */
     public function store(StoreClubAnnouncementRequest $request)
     {
-        //
+        $store = new ClubAnnouncement();
+        $store->club_id = $request->club_id;
+        $store->content = $request->content;
+        $store->save();
+        Toastr::success('Announcement added successfully.');
+        return redirect()->back();
     }
 
     /**
@@ -47,7 +53,7 @@ class ClubAnnouncementController extends Controller
      */
     public function show(ClubAnnouncement $clubAnnouncement)
     {
-        //
+        
     }
 
     /**

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClubController;
+use App\Http\Controllers\ClubAnnouncementController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -40,7 +41,22 @@ Route::group(
                 Route::post('/remove/member', [ClubController::class, 'removeMember'])->name('remove.member');
             }
         );
+
+        Route::group(
+            [
+                'prefix' => 'announcements',
+                'as' => 'announcements.',
+            ],
+            function () {
+                Route::post('/store', [ClubAnnouncementController::class, 'store'])->name('store');
+                Route::delete('/{club}', [ClubController::class, 'destroy'])->name('destroy');
+                Route::get('/{club}/show', [ClubController::class, 'show'])->name('show');
+                Route::post('/add/member', [ClubController::class, 'addMember'])->name('add.member');
+                Route::post('/remove/member', [ClubController::class, 'removeMember'])->name('remove.member');
+            }
+        );
     }
+    
 );
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

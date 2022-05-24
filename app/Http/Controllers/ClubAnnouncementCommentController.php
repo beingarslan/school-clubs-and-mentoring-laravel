@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreClubAnnouncementCommentRequest;
 use App\Http\Requests\UpdateClubAnnouncementCommentRequest;
 use App\Models\ClubAnnouncementComment;
+use Brian2694\Toastr\Facades\Toastr;
 
 class ClubAnnouncementCommentController extends Controller
 {
@@ -36,7 +37,8 @@ class ClubAnnouncementCommentController extends Controller
      */
     public function store(StoreClubAnnouncementCommentRequest $request)
     {
-        //
+    
+        
     }
 
     /**

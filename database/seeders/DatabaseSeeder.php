@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ClubSeeder::class,
             UserClubSeeder::class,
+            ClubAnnouncementSeeder::class,
+            ClubAnnouncementCommentSeeder::class,
         ]);
     }
 }
