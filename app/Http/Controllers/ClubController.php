@@ -6,9 +6,32 @@ use App\Http\Requests\StoreClubRequest;
 use App\Http\Requests\UpdateClubRequest;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Club;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class ClubController extends Controller
 {
+    public function addMember(Request $request)
+    {
+        $club = Club::find($request->club_id);
+        $user = User::find($request->user_id);
+
+        $club->users()->attach($user);
+
+        Toastr::success('User added to club successfully.');
+        return redirect()->back();
+    }
+    
+    public function removeMember(Request $request)
+    {
+        $club = Club::find($request->club_id);
+        $user = User::find($request->user_id);
+
+        $club->users()->detach($user);
+
+        Toastr::success('User removed from the club successfully.');
+        return redirect()->back();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -56,7 +79,10 @@ class ClubController extends Controller
      */
     public function show(Club $club)
     {
-        return view('clubs.show', compact('club'));
+        $users = User::where('is_admin', false)->whereDoesntHave('clubs', function ($query) use ($club) {
+            $query->where('club_id', $club->id);
+        })->get();
+        return view('clubs.show', compact('club', 'users'));
     }
 
     /**

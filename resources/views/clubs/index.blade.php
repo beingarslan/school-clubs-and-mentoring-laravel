@@ -11,13 +11,13 @@
                 <div class="card-body">
                     <!-- errors -->
                     @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                     @endif
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#mamberBox">
@@ -69,8 +69,32 @@
                                 <td>{{count($club->users)}}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button class="btn btn-primary btn-sm">View</button>
-                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                        <a href="/clubs/{{$club->id}}/show"  class="btn btn-primary btn-sm">View</a>
+                                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#rmeoveModal{{$club->id}}">Delete</button>
+                                        <!-- model start -->
+                                        <div class="modal fade" id="rmeoveModal{{$club->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Remove {{$club->name}}</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <!-- Are yous sure? -->
+                                                        <p>Are you sure you want to remove this club?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <form action="{{route('clubs.destroy',$club->id)}}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">Remove</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- model end -->
                                     </div>
                                 </td>
                             </tr>

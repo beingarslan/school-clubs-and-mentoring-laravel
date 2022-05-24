@@ -36,6 +36,8 @@ Route::group(
                 Route::post('/store', [ClubController::class, 'store'])->name('store');
                 Route::delete('/{club}', [ClubController::class, 'destroy'])->name('destroy');
                 Route::get('/{club}/show', [ClubController::class, 'show'])->name('show');
+                Route::post('/add/member', [ClubController::class, 'addMember'])->name('add.member');
+                Route::post('/remove/member', [ClubController::class, 'removeMember'])->name('remove.member');
             }
         );
     }
