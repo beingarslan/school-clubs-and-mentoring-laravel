@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class StoreClubRequest extends FormRequest
+class UpdateUserClubRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,8 @@ class StoreClubRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255|unique:clubs',
-            'description' => 'required|string|max:255',
+            'user_id' => 'required|integer|exists:users,id',
+            'club_id' => 'required|integer|exists:clubs,id',
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateClubRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdateClubRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::user()->is_admin;
     }
 
     /**
@@ -24,7 +25,8 @@ class UpdateClubRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|string|max:255|unique:clubs,name,' . $this->route('club')->id,
+            'description' => 'required|string|max:255',
         ];
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreClubRequest;
 use App\Http\Requests\UpdateClubRequest;
+use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Club;
 
 class ClubController extends Controller
@@ -15,7 +16,9 @@ class ClubController extends Controller
      */
     public function index()
     {
-        //
+        $clubs = Club::with('users')->get();
+
+        return view('clubs.index', compact('clubs'));
     }
 
     /**
@@ -25,7 +28,7 @@ class ClubController extends Controller
      */
     public function create()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -36,7 +39,13 @@ class ClubController extends Controller
      */
     public function store(StoreClubRequest $request)
     {
-        //
+        $club = Club::create([
+            'name' => $request->name,
+            'description' => $request->description,
+        ]);
+
+        Toastr::success('Club created successfully.');
+        return redirect()->back();
     }
 
     /**
