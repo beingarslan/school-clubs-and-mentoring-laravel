@@ -21,10 +21,9 @@ class ClubAnnouncementCommentSeeder extends Seeder
         $clubAnnouncements = ClubAnnouncement::all();
         foreach ($clubAnnouncements as $clubAnnouncement) {
             for ($i = 0; $i < 10; $i++) {
-                $clubAnnouncement->create([
-                    'content' => $faker->text,
-                    'user_id'=>$faker->numberBetween(1,10),
-                    'club_announcement_id'=>$clubAnnouncement->id,
+                $clubAnnouncement->comments()->create([
+                    'user_id' => rand(1, 6),
+                    'content' => $faker->text(200),
                 ]);
             }
         }

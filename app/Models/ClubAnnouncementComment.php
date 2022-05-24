@@ -17,7 +17,7 @@ class ClubAnnouncementComment extends Model
 
     public function clubAnnouncement()
     {
-        return $this->belongsTo(ClubAnnouncement::class, 'club_announcement_id');
+        return $this->belongsTo(ClubAnnouncement::class, 'club_announcement_id', 'id');
     }
 
     public function user()

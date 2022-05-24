@@ -21,6 +21,6 @@ class ClubAnnouncement extends Model
 
     public function comments()
     {
-        return $this->hasMany(ClubAnnouncementComment::class, 'club_announcement_id');
+        return $this->hasMany(ClubAnnouncementComment::class, 'club_announcement_id', 'id');
     }
 }

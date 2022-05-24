@@ -22,7 +22,7 @@ class ClubAnnouncementSeeder extends Seeder
             for ($i = 0; $i < 10; $i++) {
                 ClubAnnouncement::factory()->create([
                     'content' => $faker->text,
-                    'club_id'=>$faker->numberBetween(1,10),
+                    'club_id'=> rand(1, 5),
                 ]);
             
         }
