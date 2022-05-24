@@ -16,7 +16,9 @@ class ClubController extends Controller
      */
     public function index()
     {
-        $clubs = Club::with('users')->get();
+        $clubs = Club::with(['users', 'announcements'])->whereHas('announcements',function($query){
+            $query->with('comments');
+        })->get();
 
         return view('clubs.index', compact('clubs'));
     }

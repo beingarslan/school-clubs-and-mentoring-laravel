@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ClubController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,5 +20,25 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+Route::group(
+    [
+        'middlewreware' => ['auth'],
+    ],
+    function () {
+        Route::group(
+            [
+                'prefix' => 'clubs',
+                'as' => 'clubs.',
+            ],
+            function () {
+                Route::get('/', [ClubController::class, 'index'])->name('index');
+                Route::post('/store', [ClubController::class, 'store'])->name('store');
+                Route::delete('/{club}', [ClubController::class, 'destroy'])->name('destroy');
+                Route::get('/{club}/show', [ClubController::class, 'show'])->name('show');
+            }
+        );
+    }
+);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
