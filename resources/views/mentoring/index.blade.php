@@ -67,7 +67,7 @@
                                 <td>{{$mentoring->tital}}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="/mentorship/{{$mentoring->id}}/show"  class="btn btn-primary btn-sm">View</a>
+                                        <a href="/mentors/{{$mentoring->id}}/show"  class="btn btn-primary btn-sm">View</a>
                                         <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#rmeoveModal{{$mentoring->id}}">Delete</button>
                                         <!-- model start -->
                                         <div class="modal fade" id="rmeoveModal{{$mentoring->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

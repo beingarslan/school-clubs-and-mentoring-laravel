@@ -4,6 +4,7 @@ use App\Http\Controllers\ClubController;
 use App\Http\Controllers\ClubAnnouncementController;
 use App\Http\Controllers\ClubAnnouncementCommentController;
 use App\Http\Controllers\MentoringController;
+use App\Http\Controllers\MentorshipCommentsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -83,6 +84,8 @@ Route::group(
                 Route::delete('/destroy', [MentoringController::class, 'destroy'])->name('destroy');
                 Route::get('/{mentorship}/show', [MentoringController::class, 'show'])->name('show');
                 Route::post('/add/member', [MentoringController::class, 'addMember'])->name('add.member');
+                Route::post('/store/comment', [MentorshipCommentsController::class, 'storeComment'])->name('store.comment');
+
             }
         );
     }

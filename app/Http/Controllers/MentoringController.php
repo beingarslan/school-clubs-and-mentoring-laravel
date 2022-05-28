@@ -53,9 +53,16 @@ class MentoringController extends Controller
      * @param  \App\Models\Mentoring  $mentoring
      * @return \Illuminate\Http\Response
      */
-    public function show(Mentoring $mentoring)
+    public function show($mentoring)
     {
-        //
+       
+        // get montoring with comments
+
+        $mentoring = Mentoring::with('comments')->find($mentoring);
+       
+        return view('mentoring.show', compact('mentoring'));
+
+
     }
 
     /**
