@@ -44,6 +44,10 @@
                             <a class="nav-link" href="{{route('clubs.index')}}">Clubs</a>
                         </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('mentors.index')}}">Mentorship</a>
+                        </li>
+
                         @endauth
 
                     </ul>

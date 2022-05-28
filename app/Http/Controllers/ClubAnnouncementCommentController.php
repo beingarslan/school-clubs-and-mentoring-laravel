@@ -6,6 +6,7 @@ use App\Http\Requests\StoreClubAnnouncementCommentRequest;
 use App\Http\Requests\UpdateClubAnnouncementCommentRequest;
 use App\Models\ClubAnnouncementComment;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
 
 class ClubAnnouncementCommentController extends Controller
 {
@@ -38,6 +39,13 @@ class ClubAnnouncementCommentController extends Controller
     public function store(StoreClubAnnouncementCommentRequest $request)
     {
     
+        $clubAnnouncementComment = new ClubAnnouncementComment();
+        $clubAnnouncementComment->club_announcement_id = $request->club_announcement_id;
+        $clubAnnouncementComment->user_id = Auth::user()->id;
+        $clubAnnouncementComment->content = $request->content;
+        $clubAnnouncementComment->save();
+        Toastr::success('Comment successfully added', 'Success');
+        return redirect()->back();
         
     }
 

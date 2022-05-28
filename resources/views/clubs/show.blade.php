@@ -176,6 +176,8 @@
                             <small class="text-muted ">{{ $comment->created_at->diffForHumans() }}</small>
                             </div>
                         </div>
+                        <!-- add comment -->
+                    
                         <hr>
                         @empty
                         <div class="bg-light p-2 text-dark bg-opacity-10">
@@ -190,6 +192,17 @@
                     </a>
 
                     </div>
+                    <div class="bg-light p-2 text-dark bg-opacity-10">
+                            <form action="{{route('comments.store')}}" method="POST">
+                                @csrf
+                                <input type="hidden" name="club_announcement_id" value="{{$announcement->id}}">
+                                <div class="form-group">
+                                    <label for="">Add comment</label>
+                                    <textarea name="content" class="form-control" id="" cols="30" rows="2"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Add</button>
+                            </form>
+                        </div>
                     @empty
                     <p class="text-center">No Announcements found</p>
                     @endforelse
