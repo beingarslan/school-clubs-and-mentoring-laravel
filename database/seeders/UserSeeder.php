@@ -29,6 +29,12 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => $faker->name(),
+                'email' => 'user@user.com',
+                'password' => Hash::make('1234567890'),
+                'is_admin' => false,
+            ],
+            [
+                'name' => $faker->name(),
                 'email' => $faker->email(),
                 'password' => Hash::make('1234567890'),
                 'is_admin' => false,
